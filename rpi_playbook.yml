@@ -1,0 +1,22 @@
+---
+- hosts: rpi
+  become: yes
+
+  tasks:
+    - name: Ensure chrony is installed
+      apt:
+        name: chrony
+        state: present
+
+    - name: Ensure chrony is running
+      service:
+        name: chronyd
+        state: started
+        enabled: yes
+
+    - name: Ensure Nvim is installed
+      apt:
+        name: neovim
+        state: present
+
+
