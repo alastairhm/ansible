@@ -1,0 +1,13 @@
+---
+- hosts: rpi
+  become: yes
+
+  tasks:
+    - name: Ensure repos are cloned
+      git:
+        repo: {{ item }}
+        dest: /home/pi/gitd
+      loop:
+        - https://github.com/alastairhm/docker-rpi-squid.git
+
+
