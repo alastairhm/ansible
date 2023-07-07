@@ -1,13 +1,29 @@
 ---
 - hosts: rpi
+  vars:
+    repo_path: "gitd"
   become: yes
 
   tasks:
+    - name: "ensure gitrepo directory exists"
+      file:
+        path: "/home/pi/{{ repo_path }}"
+        state: directory
+        owner: "pi"
+        group: "pi"
+      become: true
+
     - name: Ensure repos are cloned
       git:
-        repo: {{ item }}
-        dest: /home/pi/gitd
+        repo: "{{ item.url }}"
+        dest: "/home/pi/{{ repo_path }}/{{ item.path }}"
       loop:
-        - https://github.com/alastairhm/docker-rpi-squid.git
+        - { "url":"https://github.com/alastairhm/docker-rpi-squid.git", "path":"docker-rpi-squid"}
+        - { "url":"https://github.com/sthuber90/docker-speedtest.git", "path":"docker-speedtest"}
 
-
+    - name: Change file permission
+      file:
+        path: "{{ repo_path }}"
+        owner: "pi"
+        group: "pi"          
+        recurse: yes
