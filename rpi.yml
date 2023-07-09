@@ -1,0 +1,10 @@
+
+---
+- hosts: rpi
+  become: yes
+
+  tasks:
+    - name: Include Tasks
+      import_playbook: packages.yml 
+      import_playbook: gitrepo.yml
+
