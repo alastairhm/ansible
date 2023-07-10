@@ -14,6 +14,7 @@
       loop:
         - { "url":"https://github.com/alastairhm/docker-rpi-squid.git", "path":"docker-rpi-squid"}
         - { "url":"https://github.com/sthuber90/docker-speedtest.git", "path":"docker-speedtest"}
+        - { "url":"https://github.com/asdf-vm/asdf.git", "path":"asdf"}
 
     - name: Change file permission
       file:
@@ -21,3 +22,17 @@
         owner: "pi"
         group: "pi"          
         recurse: yes
+
+    - name: link adsf
+      file:
+        src: "/home/pi/{{ repo_path }}/asdf"
+        dest: "/home/pi/.asdf"
+        state: link
+
+    - name: Add asdf to bashrc
+      lineinfile:
+        dest: "/home/pi/.bashrc"
+        line: |
+          . "$HOME/.asdf/asdf.sh"
+          . "$HOME/.asdf/completions/asdf.bash"
+

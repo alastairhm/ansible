@@ -1,0 +1,6 @@
+---
+    - name: Ensure plugins are installed
+      ansible.builtin.command: 
+        cmd: "asdf plugin add {{ item }}"
+      loop:
+        - bat
