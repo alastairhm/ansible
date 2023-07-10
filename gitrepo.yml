@@ -1,10 +1,4 @@
 ---
-- hosts: rpi
-  vars:
-    repo_path: "gitd"
-  become: yes
-
-  tasks:
     - name: "ensure gitrepo directory exists"
       file:
         path: "/home/pi/{{ repo_path }}"

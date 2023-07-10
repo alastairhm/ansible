@@ -1,10 +1,11 @@
 
 ---
 - hosts: rpi
+  vars:
+    repo_path: "gitd"
   become: yes
 
   tasks:
-    - name: Include Tasks
-      import_playbook: packages.yml 
-      import_playbook: gitrepo.yml
+    - import_tasks: packages.yml 
+    - import_tasks: gitrepo.yml
 
