@@ -1,10 +1,10 @@
 
 ---
-- hosts: rpi
+- hosts: ubuntu_tc
   vars:
-    repo_path: "gitd"
-    local_user: "pi"
-    local_group: "pi"
+    repo_path: "gitrp"
+    local_user: "alastair"
+    local_group: "alastair"
   become: yes
 
   tasks:
