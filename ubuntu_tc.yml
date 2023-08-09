@@ -10,4 +10,5 @@
   tasks:
     - import_tasks: packages.yml 
     - import_tasks: gitrepo.yml
+    - import_tasks: asdf_setup.yml
 
