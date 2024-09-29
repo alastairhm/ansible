@@ -1,6 +1,16 @@
 ---
     - name: Ensure plugins are installed
+      become_user: "{{ local_user }}"
       ansible.builtin.command: 
-        cmd: "asdf plugin add {{ item }}"
+        cmd: "/home/{{ local_user }}/.asdf/bin/asdf plugin add {{ item }}"
       loop:
+        - awscli
         - bat
+        - exa
+        - fd
+        - fzf
+        - python
+        - ruby
+        - task
+        - terraform
+

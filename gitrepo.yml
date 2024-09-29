@@ -32,7 +32,10 @@
     - name: Add asdf to bashrc
       lineinfile:
         dest: "/home/{{ local_user }}/.bashrc"
-        line: |
-          . "$HOME/.asdf/asdf.sh"
-          . "$HOME/.asdf/completions/asdf.bash"
+        line: '. "$HOME/.asdf/asdf.sh"'
+    
+    - name: Add asdf to bashrc2
+      lineinfile:
+        dest: "/home/{{ local_user }}/.bashrc"
+        line: '. "$HOME/.asdf/completions/asdf.bash"'
 
