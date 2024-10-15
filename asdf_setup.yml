@@ -13,4 +13,32 @@
         - ruby
         - task
         - terraform
+        - zoxide
 
+    - name: Ensure utilities are installed
+      become_user: "{{ local_user }}"
+      ansible.builtin.command: 
+        cmd: "/home/{{ local_user }}/.asdf/bin/asdf install {{ item }} latest"
+      loop:
+        - awscli
+        - bat
+        - exa
+        - fd
+        - fzf
+        - task
+        - terraform
+        - zoxide
+
+    - name: Ensure utilities are used
+      become_user: "{{ local_user }}"
+      ansible.builtin.command: 
+        cmd: "/home/{{ local_user }}/.asdf/bin/asdf global {{ item }} latest"
+      loop:
+        - awscli
+        - bat
+        - exa
+        - fd
+        - fzf
+        - task
+        - terraform
+        - zoxide

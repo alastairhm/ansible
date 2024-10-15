@@ -1,0 +1,15 @@
+
+---
+- hosts: localhost
+  vars:
+    repo_path: "gitrp"
+    local_user: "alastair"
+    local_group: "alastair"
+  become: yes
+
+  tasks:
+    - import_tasks: packages.yml 
+    - import_tasks: gitrepo.yml
+    - import_tasks: asdf_setup.yml
+    - import_tasks: spacevim.yml
+

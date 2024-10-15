@@ -1,0 +1,6 @@
+---
+    - name: Ensure SpaceVim
+      become_user: "{{ local_user }}"
+      ansible.builtin.command: 
+        cmd: "curl -sLf https://spacevim.org/install.sh | bash"
+

@@ -23,11 +23,19 @@
         group: "{{ local_group }}"          
         recurse: yes
 
+    - name: Check if directory exists
+      become_user: "{{ local_user }}"
+      ansible.builtin.stat:
+        path: /home/{{ local_user }}/.asdf
+      register: dir_check
+
     - name: link adsf
       file:
         src: "/home/{{ local_user }}/{{ repo_path }}/asdf"
         dest: "/home/{{ local_user }}/.asdf"
         state: link
+        force: no
+      when: not dir_check.stat.exists
 
     - name: Add asdf to bashrc
       lineinfile:
